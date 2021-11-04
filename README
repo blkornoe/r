@@ -1,0 +1,23 @@
+A file named README is required to answer the following questions:
+Question 1: Are there any race conditions in this even-odd sort as suggested? Why?
+
+	1)The program should wait for each thread to complete before moving to complete the
+	next thread. This means only one thread is working at a time.
+	
+Question: Prove rigorously that this algorithm does sort the input number correctly and takes no more than n iterations to sort an array of n numbers.
+
+	2)When the alorithm is given array elements the algorithm will swap them until 
+	the elements cannot be swaped any longer.
+
+Question: In each iteration, the main() does the creation and join for the completion of n/2 threads twice, once for an even pass and the other for an odd pass. Compared with simple comparisons, it requires a significant amount of time in creating and joining threads. If you are allowed to use extra variables/arrays and busy waiting, can you just create n/2 threads and let them do both the even pass and the odd pass in the same iteration without race conditions and still deliver correct results? More precisely, thread Tk compares x[k-1] and x[k] in an even pass, and then compare x[k] and x[k+1] in an odd pass? Suggest a solution and discuss its correctness.
+	
+	3)No, instead of the thread cpp used the main can manually create thread functions. However, even though the
+	pass is even and odd, the swap will swap over lapping elements. Becasue of this even and odd passes
+	have the potiental to grab the same element at the same time. So without a wait there
+	can be race conditions.
+
+Question: Furthermore, can you just create n/2 threads at the very beginning and let them do all the even pass and odd pass comparisons? In this way, you save more time on creating and joining threads. Suggest a solution and discuss its correctness.
+
+	4)Yes, like in number 3, single threads can be used. Within main a thread can be created for 
+	each desired pass. If a join is added for each thread created then all threads will wait for eachother.
+
